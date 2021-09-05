@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="c980bc22-f241-4106-9939-1019dc83066c" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="sh-mule-apiFlow" doc:id="1ed124e0-0877-495f-bda8-519d82364fdd" >
+		<http:listener doc:name="Listener" doc:id="7c0445e1-4b88-4ca8-81e8-537e9ac3edec" config-ref="HTTP_Listener_config" path="/api/*"/>
+		<logger level="INFO" doc:name="Logger" doc:id="600a70dc-6101-44bb-8bca-882d888963bc" message="sh-mule-api executing"/>
+		<ee:transform doc:name="Transform Message" doc:id="a1cf057f-d6d2-4aee-a061-878ad8b7bc9e" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"status":"OK"
+}]]></ee:set-payload>
+			</ee:message>
+			<ee:variables >
+				<ee:set-variable variableName="httpStatus" ><![CDATA["200"]]></ee:set-variable>
+			</ee:variables>
+		</ee:transform>
+	</flow>
+</mule>
