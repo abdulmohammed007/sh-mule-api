@@ -11,17 +11,20 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 	<flow name="sh-mule-apiFlow" doc:id="1ed124e0-0877-495f-bda8-519d82364fdd" >
 		<http:listener doc:name="Listener" doc:id="7c0445e1-4b88-4ca8-81e8-537e9ac3edec" config-ref="HTTP_Listener_config" path="/api/*"/>
 		<logger level="INFO" doc:name="Logger" doc:id="600a70dc-6101-44bb-8bca-882d888963bc" message="sh-mule-api executing"/>
-		<ee:transform doc:name="Transform Message" doc:id="a1cf057f-d6d2-4aee-a061-878ad8b7bc9e" >
-			<ee:message >
-				<ee:set-payload ><![CDATA[%dw 2.0
+		<flow-ref doc:name="Flow Reference" doc:id="02a9deb6-9e73-434c-8d68-7435f4f9b9c1" name="sh-mule-apiFlow1"/>
+	</flow>
+	<flow name="sh-mule-apiFlow1" doc:id="462ceca9-285c-40a8-846a-34082b525a51" >
+		<ee:transform doc:name="Transform Message" doc:id="a1cf057f-d6d2-4aee-a061-878ad8b7bc9e">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
 output application/json
 ---
 {
 	"status":"OK"
 }]]></ee:set-payload>
 			</ee:message>
-			<ee:variables >
-				<ee:set-variable variableName="httpStatus" ><![CDATA["200"]]></ee:set-variable>
+			<ee:variables>
+				<ee:set-variable variableName="httpStatus"><![CDATA["200"]]></ee:set-variable>
 			</ee:variables>
 		</ee:transform>
 	</flow>
