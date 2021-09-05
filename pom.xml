@@ -1,14 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.mycompany</groupId>
+	<groupId>6ee10956-fd4c-4000-99a7-369e5fcf4a39</groupId>
 	<artifactId>sh-mule-api</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-    <packaging>mule-application</packaging>
+	<version>1.0.4</version>
+	<packaging>mule-application</packaging>
 
-	<name>sh-mule-api</name>
+	<name>skeleton-api-template</name>
 
 	<description>The skeleton api template is a starting point for building APIs in Mule 4.3 for Select Health</description>
 	<properties>
