@@ -7,6 +7,12 @@ pipeline {
 			}
 		}
 		
+		stage('MUnuit Testing') {
+			steps {
+				sh 'export MAVEN_HOME=/Applications/apache-maven-3.6.3 export PATH=$PATH:$MAVEN_HOME/bin mvn test'
+			}
+		}
+		
 		stage('Deploy Application to Exchange') {
 			steps {
 				sh '/Users/abdulmohammed/projects/selecthealth/code/jenkins_workspace/sh-mule-api/scripts/exchange-deploy.sh'
