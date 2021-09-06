@@ -3,7 +3,7 @@ pipeline {
 	stages {
 		stage('Build Application') {
 			steps {
-				sh 'export MAVEN_HOME=/Applications/apache-maven-3.6.3 export PATH=$PATH:$MAVEN_HOME/bin mvn clean package'
+				sh 'export MAVEN_HOME=/Applications/apache-maven-3.6.3 export PATH=$PATH:$MAVEN_HOME/bin mvn clean install'
 			}
 		}
 		
@@ -13,7 +13,7 @@ pipeline {
 					[
 						artifactId: 'sh-mule-api', 
 						classifier: '', 
-						file: 'target/sh-mule-api-1.0.0-SNAPSHOT.jar', type: 'jar'
+						file: 'target/sh-mule-api-1.0.7-SNAPSHOT-mule-application.jar', type: 'jar'
 					]
 				], 
 				credentialsId: '2a61082e-0f67-4391-b6ae-60331d4f9835', 
