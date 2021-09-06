@@ -1,9 +1,17 @@
 pipeline {
 	agent any 
 	stages {
-		stage('Build Application') { 
+		stage('Build Application') {
 			steps {
 				sh 'export MAVEN_HOME=/Applications/apache-maven-3.6.3 export PATH=$PATH:$MAVEN_HOME/bin mvn clean install'
+			}
+		}
+		
+		
+		
+		stage('MUnuit Testing') {
+			steps {
+				sh 'export MAVEN_HOME=/Applications/apache-maven-3.6.3 export PATH=$PATH:$MAVEN_HOME/bin mvn test'
 			}
 		}
 		
@@ -23,12 +31,6 @@ pipeline {
 				protocol: 'http', 
 				repository: 'sh-mule-api-snapshot', 
 				version: '1.0.6-SNAPSHOT'			
-			}
-		}
-		
-		stage('MUnuit Testing') {
-			steps {
-				sh 'export MAVEN_HOME=/Applications/apache-maven-3.6.3 export PATH=$PATH:$MAVEN_HOME/bin mvn test'
 			}
 		}
 		
