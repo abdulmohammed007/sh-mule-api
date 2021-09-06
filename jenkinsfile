@@ -15,6 +15,14 @@ pipeline {
 			}
 		}
 		
+		
+		
+		stage('Deploy Application to Exchange') {
+			steps {
+				sh '/Users/abdulmohammed/projects/selecthealth/code/jenkins_workspace/sh-mule-api/scripts/exchange-deploy.sh'
+				}
+			}
+		
 		stage('Upload to Nexus Repository') {
 			steps {
 				nexusArtifactUploader artifacts: [
@@ -33,12 +41,6 @@ pipeline {
 				version: '1.0.6-SNAPSHOT'			
 			}
 		}
-		
-		stage('Deploy Application to Exchange') {
-			steps {
-				sh '/Users/abdulmohammed/projects/selecthealth/code/jenkins_workspace/sh-mule-api/scripts/exchange-deploy.sh'
-				}
-			}
 		
 		stage('Deploy Application to Runtime Fabric') {
 			steps {
