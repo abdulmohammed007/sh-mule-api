@@ -7,6 +7,25 @@ pipeline {
 			}
 		}
 		
+		stage('Upload to Nexus Repository') {
+			steps {
+				nexusArtifactUploader artifacts: [
+					[
+						artifactId: 'sh-mule-api', 
+						classifier: '', 
+						file: 'target/sh-mule-api-1.0.0-SNAPSHOT.jar', type: 'jar'
+					]
+				], 
+				credentialsId: '2a61082e-0f67-4391-b6ae-60331d4f9835', 
+				groupId: '6ee10956-fd4c-4000-99a7-369e5fcf4a39', 
+				nexusUrl: '127.0.0.1:8081', 
+				nexusVersion: 'nexus3', 
+				protocol: 'http', 
+				repository: 'http://127.0.0.1:8081/repository/sh-mule-api-snapshot/', 
+				version: '1.0.6-SNAPSHOT'			
+			}
+		}
+		
 		stage('MUnuit Testing') {
 			steps {
 				sh 'export MAVEN_HOME=/Applications/apache-maven-3.6.3 export PATH=$PATH:$MAVEN_HOME/bin mvn test'
