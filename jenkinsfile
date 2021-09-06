@@ -9,7 +9,7 @@ pipeline {
 		
 		stage('Deploy Application to Exchange') {
 			steps {
-				sh '//Users/abdulmohammed//projects//selecthealth//code//jenkins_workspace//sh-mule-api//scripts//exhange-deploy.sh'
+				sh '//Users//abdulmohammed//projects//selecthealth//code//jenkins_workspace//sh-mule-api//scripts//exchange-deploy.sh'
 				}
 			}
 		
