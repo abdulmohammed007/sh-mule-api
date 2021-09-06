@@ -6,10 +6,10 @@
 
 	<groupId>6ee10956-fd4c-4000-99a7-369e5fcf4a39</groupId>
 	<artifactId>sh-mule-api</artifactId>
-	<version>1.0.7-SNAPSHOT</version>
+	<version>1.0.8-SNAPSHOT</version>
 	<packaging>mule-application</packaging>
 
-	<name>skeleton-api-template</name>
+	<name>sh-mule-api</name>
 
 	<description>The skeleton api template is a starting point for building APIs in Mule 4.3 for Select Health</description>
 	<properties>
@@ -74,7 +74,7 @@
 						</deploymentSettings>
 
 					</runtimeFabricDeployment>
-
+					
 				</configuration>
 			</plugin>
 
@@ -159,32 +159,21 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-
-<groupId>com.mulesoft.munit</groupId>
-
-<artifactId>munit-remote</artifactId>
-
-<version>${munit.version}</version>
-
-<scope>test</scope>
-
-</dependency>
-		<dependency>
 			<groupId>com.mulesoft.munit</groupId>
 			<artifactId>munit-tools</artifactId>
 			<classifier>mule-plugin</classifier>
 			<version>${munit.version}</version>
 			<scope>test</scope>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>6ee10956-fd4c-4000-99a7-369e5fcf4a39</groupId>
 			<artifactId>logger-mule-extension</artifactId>
 			<version>1.0.3</version>
 			<classifier>mule-plugin</classifier>
 		</dependency>
-
-
+		
+		
 	</dependencies>
 
 	<repositories>
