@@ -25,12 +25,13 @@ pipeline {
 		
 		stage('Upload to Nexus Repository') {
 			steps {
-			def mavenPom = readMavenPom "pom.xml"
+			def mavenPom = readMavenPom 'pom.xml'
 				nexusArtifactUploader artifacts: [
 					[
 						artifactId: 'sh-mule-api', 
 						classifier: '', 
-						file: "target/sh-mule-api-${mavenPom.version}-SNAPSHOT-mule-application.jar", type: 'jar'
+						file: "target/sh-mule-api-${mavenPom.version}-mule-application.jar", 
+						type: 'jar'
 					]
 				], 
 				credentialsId: '2a61082e-0f67-4391-b6ae-60331d4f9835', 
