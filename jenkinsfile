@@ -39,7 +39,7 @@ pipeline {
 				nexusVersion: 'nexus3', 
 				protocol: 'http', 
 				repository: 'sh-mule-api-snapshot', 
-				version: ${mavenPom.version}			
+				version: "${mavenPom.version}"			
 			}
 		}
 		
