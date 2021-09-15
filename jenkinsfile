@@ -1,10 +1,8 @@
- 
+
 
 pipeline {
 	agent any 
-	tools {
-		maven 'maven3'
-	}
+	
 	stages {
 		stage('Build Application') {
 			steps {
@@ -22,7 +20,7 @@ pipeline {
 		
 		
 		
-		stage('Deploy Application to Exchange') {
+		stage('Deploy Application to Exchange') 
 			steps {
 				sh '/Users/abdulmohammed/projects/selecthealth/code/jenkins_workspace/sh-mule-api/scripts/exchange-deploy.sh'
 				}
@@ -31,12 +29,15 @@ pipeline {
 		stage('Upload to Nexus Repository') {
 			
 			steps {
+				sh 'export MAVEN_HOME=/Applications/apache-maven-3.6.3 
+				export PATH=$PATH:$MAVEN_HOME/bin
+				
 				def pom = readMavenPom file: 'pom.xml'
 				nexusArtifactUploader artifacts: [
 					[
 						artifactId: 'sh-mule-api', 
 						classifier: '', 
-						file: "target/sh-mule-api-${pom.version}-mule-application.jar", 
+						file: "target/sh-mule-api-2.0.11-SNAPSHOT-mule-application.jar", 
 						type: 'jar'
 					]
 				], 
@@ -46,7 +47,7 @@ pipeline {
 				nexusVersion: 'nexus3', 
 				protocol: 'http', 
 				repository: 'sh-mule-api-snapshot', 
-				version: "${pom.version}"			
+				version: "2.0.11-SNAPSHOT"			
 			}
 		}
 		
