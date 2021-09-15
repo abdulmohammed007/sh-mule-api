@@ -29,8 +29,7 @@ pipeline {
 		stage('Upload to Nexus Repository') {
 			
 			steps {
-				sh 'export MAVEN_HOME=/Applications/apache-maven-3.6.3 
-				export PATH=$PATH:$MAVEN_HOME/bin
+				sh 'export MAVEN_HOME=/Applications/apache-maven-3.6.3 export PATH=$PATH:$MAVEN_HOME/bin'
 				
 				def pom = readMavenPom file: 'pom.xml'
 				nexusArtifactUploader artifacts: [
