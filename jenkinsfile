@@ -20,7 +20,7 @@ pipeline {
 		
 		
 		
-		stage('Deploy Application to Exchange') 
+		stage('Deploy Application to Exchange') {
 			steps {
 				sh '/Users/abdulmohammed/projects/selecthealth/code/jenkins_workspace/sh-mule-api/scripts/exchange-deploy.sh'
 				}
@@ -55,5 +55,5 @@ pipeline {
 				sh '/Users/abdulmohammed/projects/selecthealth/code/jenkins_workspace/sh-mule-api/scripts/rtf-deploy.sh'
 			}
 		}
-	}
+	
 }
