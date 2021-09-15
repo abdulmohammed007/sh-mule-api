@@ -24,7 +24,7 @@ pipeline {
 			steps {
 				sh '/Users/abdulmohammed/projects/selecthealth/code/jenkins_workspace/sh-mule-api/scripts/exchange-deploy.sh'
 				}
-			}
+		}
 		
 		stage('Upload to Nexus Repository') {
 			
@@ -55,5 +55,6 @@ pipeline {
 				sh '/Users/abdulmohammed/projects/selecthealth/code/jenkins_workspace/sh-mule-api/scripts/rtf-deploy.sh'
 			}
 		}
+	}
 	
 }
