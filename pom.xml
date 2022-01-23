@@ -6,7 +6,7 @@
 
 	<groupId>6ee10956-fd4c-4000-99a7-369e5fcf4a39</groupId>
 	<artifactId>sh-mule-api</artifactId>
-	<version>2.0.26-SNAPSHOT</version>
+	<version>2.0.27-SNAPSHOT</version>
 	<packaging>mule-application</packaging>
 
 	<name>sh-mule-api</name>
@@ -34,8 +34,11 @@
 					<runtimeFabricDeployment>
 						<uri>https://anypoint.mulesoft.com</uri>
 						<muleVersion>4.3.0</muleVersion>
-						<username>${username}</username>
-						<password>${password}</password>
+						<!--username>${username}</username>
+						    <password>${password}</password-->
+						<connectedAppClientId>${clientId}</connectedAppClientId>
+						<connectedAppClientSecret>${clientSecret}</connectedAppClientSecret>
+						<connectedAppGrantType>client_credentials</connectedAppGrantType>
 						<applicationName>${applicationName}</applicationName>
 						<businessGroup>selecthealth</businessGroup>
 						<target>${target}</target>
