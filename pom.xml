@@ -6,7 +6,7 @@
 
 	<groupId>6ee10956-fd4c-4000-99a7-369e5fcf4a39</groupId>
 	<artifactId>sh-mule-api</artifactId>
-	<version>2.0.25-SNAPSHOT</version>
+	<version>2.0.26-SNAPSHOT</version>
 	<packaging>mule-application</packaging>
 
 	<name>sh-mule-api</name>

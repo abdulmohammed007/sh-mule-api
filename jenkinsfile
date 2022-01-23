@@ -22,7 +22,7 @@ pipeline {
 		
 		stage('Deploy Application to Exchange') {
 			steps {
-				sh '/Users/abdulmohammed/projects/selecthealth/code/jenkins_workspace/sh-mule-api/scripts/exchange-deploy.sh'
+				sh '/Users/abdulmohammed/projects/selecthealth/CICD/mule_workspace/sh-mule-api/scripts/exchange-deploy.sh'
 				}
 		}
 		
@@ -36,7 +36,7 @@ pipeline {
 					[
 						artifactId: 'sh-mule-api', 
 						classifier: '', 
-						file: "target/sh-mule-api-2.0.25-SNAPSHOT-mule-application.jar", 
+						file: "target/sh-mule-api-2.0.26-SNAPSHOT-mule-application.jar", 
 						type: 'jar'
 					]
 				], 
@@ -46,13 +46,13 @@ pipeline {
 				nexusVersion: 'nexus3', 
 				protocol: 'http', 
 				repository: 'sh-mule-api-snapshot', 
-				version: "2.0.25-SNAPSHOT"			
+				version: "2.0.26-SNAPSHOT"			
 			}
 		}
 		
 		stage('Deploy Application to Runtime Fabric') {
 			steps {
-				sh '/Users/abdulmohammed/projects/selecthealth/code/jenkins_workspace/sh-mule-api/scripts/rtf-deploy.sh'
+				sh '/Users/abdulmohammed/projects/selecthealth/CICD/mule_workspace/sh-mule-api/scripts/rtf-deploy.sh'
 			}
 		}
 	}
