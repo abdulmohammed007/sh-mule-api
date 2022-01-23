@@ -1,12 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>  
-
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 	<groupId>6ee10956-fd4c-4000-99a7-369e5fcf4a39</groupId>
 	<artifactId>sh-mule-api</artifactId>
-	<version>2.0.27-SNAPSHOT</version>
+	<version>2.0.28-SNAPSHOT</version>
 	<packaging>mule-application</packaging>
 
 	<name>sh-mule-api</name>
@@ -44,7 +41,7 @@
 						<target>${target}</target>
 						<environment>${environment}</environment>
 						<provider>${provider}</provider>
-						<replicas>1</replicas>
+						<replicas>${replicas}</replicas>
 						<deploymentTimeout>5000000</deploymentTimeout>
 						<properties>
 							<mule.env>${mule.env}</mule.env>
@@ -57,27 +54,27 @@
 						<deploymentSettings>
 							<enforceDeployingReplicasAcrossNodes>false</enforceDeployingReplicasAcrossNodes>
 							<updateStrategy>recreate</updateStrategy>
-							<clustered>false</clustered>
-							<forwardSslSession>false</forwardSslSession>
-							<lastMileSecurity>false</lastMileSecurity>
+							<clustered>${clustered}</clustered>
+							<forwardSslSession>${forwardSslSession}</forwardSslSession>
+							<lastMileSecurity>${lastMileSecurity}</lastMileSecurity>
 							<resources>
 								<cpu>
-									<reserved>500m</reserved>
-									<limit>1000m</limit>
+									<reserved>${cpureserved}</reserved>
+									<limit>${cpulimit}</limit>
 								</cpu>
 								<memory>
-									<reserved>700Mi</reserved>
+									<reserved>${memoryreserved}</reserved>
 								</memory>
 							</resources>
 							<http>
 								<inbound>
-									<publicUrl>https://hpv-mrtfcdev01.co.ihc.com/${applicationName}</publicUrl>
+									<publicUrl>${publicUrl}</publicUrl>
 								</inbound>
 							</http>
 						</deploymentSettings>
 
 					</runtimeFabricDeployment>
-					
+					<classifier>mule-application</classifier>
 				</configuration>
 			</plugin>
 
@@ -168,15 +165,12 @@
 			<version>${munit.version}</version>
 			<scope>test</scope>
 		</dependency>
-		
 		<dependency>
 			<groupId>6ee10956-fd4c-4000-99a7-369e5fcf4a39</groupId>
 			<artifactId>logger-mule-extension</artifactId>
 			<version>1.0.3</version>
 			<classifier>mule-plugin</classifier>
 		</dependency>
-		
-		
 	</dependencies>
 
 	<repositories>
