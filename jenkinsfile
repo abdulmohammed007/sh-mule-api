@@ -36,7 +36,7 @@ pipeline {
 					[
 						artifactId: 'sh-mule-api', 
 						classifier: '', 
-						file: "target/sh-mule-api-2.0.22-SNAPSHOT-mule-application.jar", 
+						file: "target/sh-mule-api-2.0.24-SNAPSHOT-mule-application.jar", 
 						type: 'jar'
 					]
 				], 
