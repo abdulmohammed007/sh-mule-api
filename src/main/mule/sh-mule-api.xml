@@ -1,17 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
-	xmlns="http://www.mulesoft.org/schema/mule/core"
-	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+<mule xmlns:tls="http://www.mulesoft.org/schema/mule/tls" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
-http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/tls http://www.mulesoft.org/schema/mule/tls/current/mule-tls.xsd">
 	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="c980bc22-f241-4106-9939-1019dc83066c" >
 		<http:listener-connection host="0.0.0.0" port="8081" />
 	</http:listener-config>
+	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="949f4651-638f-4b46-86d7-13e03ff1b485" >
+		<http:request-connection host="${cyberark.api.host}" port="${cyberark.api.port}" connectionIdleTimeout="300000" protocol="HTTPS">
+			<tls:context >
+				<tls:trust-store insecure="true" />
+			</tls:context>
+		</http:request-connection>
+	</http:request-config>
+	<global-property doc:name="Global Property" doc:id="5cca67eb-6ec4-4751-aa2c-6fbecf785dad" name="mule.env" value="dev" />
+	<configuration-properties doc:name="Configuration properties" doc:id="ef5e2122-9268-422a-b0c5-ddbd8dad9bfd" file="config/app-config-${mule.env}.yaml" />
 	<flow name="sh-mule-apiFlow" doc:id="1ed124e0-0877-495f-bda8-519d82364fdd" >
-		<http:listener doc:name="Listener" doc:id="7c0445e1-4b88-4ca8-81e8-537e9ac3edec" config-ref="HTTP_Listener_config" path="/api/*"/>
+		<http:listener doc:name="Listener" doc:id="7c0445e1-4b88-4ca8-81e8-537e9ac3edec" config-ref="HTTP_Listener_config" path="/*"/>
 		<logger level="INFO" doc:name="Logger" doc:id="600a70dc-6101-44bb-8bca-882d888963bc" message="sh-mule-api executing"/>
-		<flow-ref doc:name="Flow Reference" doc:id="02a9deb6-9e73-434c-8d68-7435f4f9b9c1" name="sh-mule-apiFlow1"/>
+		<set-variable value="#['12345']" doc:name="Set Variable" doc:id="5c3dbd65-ab88-44d7-82b4-4611d8b3d9f7" variableName="x-event-id"/>
+		<set-variable value="#['98899999']" doc:name="Set Variable" doc:id="0fcaf4f0-c725-4211-a951-9529e55b91f3" variableName="x-message-id"/>
+		<ee:transform doc:name="Transform Message" doc:id="0d7d5685-56a8-4ccb-9c04-e2ddab8b728a" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+'x-event-id:' ++ vars."x-event-id" as String ++ ',' ++ 'x-message-id:' ++ vars."x-message-id" as String]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<ee:transform doc:name="Transform Message" doc:id="3d186740-719c-49a6-a581-04b776fd7f7d" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+	"Name" : "sh-mule-api"
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="c26c6a04-a741-4ab0-bd6e-eee549aa026f" message="#[payload]"/>
+		<logger level="INFO" doc:name="Logger" doc:id="320254a1-46c7-43e6-afe7-a725a8e4de55" message='#[vars."x-event-details"]'/>
 	</flow>
 	<flow name="sh-mule-apiFlow1" doc:id="462ceca9-285c-40a8-846a-34082b525a51" >
 		<ee:transform doc:name="Transform Message" doc:id="a1cf057f-d6d2-4aee-a061-878ad8b7bc9e">

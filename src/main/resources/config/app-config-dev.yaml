@@ -1,0 +1,17 @@
+
+api:
+  base: "sh-mule-api"
+  path: "sh-mule-api"
+#Cyberark https://hpv-webdev1-01.co.ihc.com:5601/DEV01/api/cyberark/simplerequest?requesterUserName=MuleUser&requestedObjectName=AccountKey&requestReason=ToConnectfromMule 
+cyberark:
+  api:
+    host: "hpv-webdev1-01.co.ihc.com"
+    port: "5601"
+    path: "/DEV01/api/cyberark/simplerequest?requesterUserName=MuleUser&requestedObjectName=interop_core_user&requestReason=ToConnectfromMule"
+    
+rabbitmq:
+  host: "localhost"
+  port: ""
+  username: "guest"
+  password: "guest"
+  
