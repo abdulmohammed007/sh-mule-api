@@ -36,7 +36,7 @@ pipeline {
 					[
 						artifactId: 'sh-mule-api', 
 						classifier: '', 
-						file: "target/sh-mule-api-2.0.28-SNAPSHOT-mule-application.jar", 
+						file: "target/sh-mule-api-2.0.29-SNAPSHOT-mule-application.jar", 
 						type: 'jar'
 					]
 				], 
@@ -46,7 +46,7 @@ pipeline {
 				nexusVersion: 'nexus3', 
 				protocol: 'http', 
 				repository: 'sh-mule-api-snapshot', 
-				version: "2.0.28-SNAPSHOT"			
+				version: "2.0.29-SNAPSHOT"			
 			}
 		}
 		
